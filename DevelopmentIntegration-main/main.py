@@ -1,32 +1,32 @@
+"""
 from sympy import *
 import pandas as pd
 
 k, T, C, L = symbols('k T C L')
 # 1 Способ
-C_ost = 30000  # молодец Артём
+C_ost = 120000 
 Am_lst = []
-C_ost_lst = [
-]  # Что это такое? это создание пустого списка с именем C_ost_lst, C_ost_lst — это будущий столбец "Остаток стоимости" -5
-for i in range(8):  # молодец Артём 2
-    Am = (C - L) / T
-    C_ost -= Am.subs({C: 30000, T: 8, L: 0})  # корректно
-    Am_lst.append(round(Am.subs({C: 30000, T: 8, L: 0}), 2))  # корректно
-    C_ost_lst.append(round(C_ost, 2))
+C_ost_lst = [] 
+for i in range(1, 11): 
+  Am = (C - L) / T
+  C_ost -= Am.subs({C: 120000, T: 10, L: 0}) 
+  Am_lst.append(round(Am.subs({C: 120000, T: 10, L: 0}), 2)) 
+  C_ost_lst.append(round(C_ost, 2))
 print('Am_lst', Am_lst)
-print('C_ost_lst', C_ost_lst)
+print('C_ost_lst', C_ost_lst) 
 
 #2 способ
 Aj = 0
-C_ost = 10000000  # Что это такое? Инициализируем первоначальную стоимость объекта-5
+C_ost = 120000 
 Am_lst_2 = []
 C_ost_lst_2 = []
 
-for i in range(8):
-    Am = k * 1 / T * (C - Aj)
-    C_ost -= Am.subs({C: 30000, T: 8, k: 2})
-    Am_lst_2.append(round(Am.subs({C: 30000, T: 8, k: 2}), 2))
-    Aj += Am
-    C_ost_lst_2.append(round(C_ost, 2))
+for i in range(1, 11):
+  Am = k * 1 / T * (C - Aj)
+  C_ost -= Am.subs({C: 120000, T: 8, k: 2})
+  Am_lst_2.append(round(Am.subs({C: 120000, T: 8, k: 2}), 2))
+  Aj += Am
+  C_ost_lst_2.append(round(C_ost, 2))
 
 print('Am_lst_2:', Am_lst_2)
 print('C_ost_lst_2:', C_ost_lst_2)
@@ -36,9 +36,8 @@ import pandas as pd
 
 Y = range(1, 9)
 
-table1 = list(
-    zip(Y, C_ost_lst, Am_lst)
-)  #Зачем эта строка? объединяем три отдельных списка в одну структуру, готовую для создания таблицы, zip соединяет первый элемент из первого списка с первым элементом из второго и третьего списков, второй элемент с вторым и т.д. - получаем список кортежей -5
+table1 = list(zip(Y, C_ost_lst, Am_lst)) #Зачем эта строка? объединяем три отдельных списка в одну структуру, готовую для создания таблицы, zip соединяет первый элемент из первого списка с первым элементом из второго и третьего списков, второй элемент с вторым и т.д. - получаем список кортежей -5
+
 
 table2 = list(zip(Y, C_ost_lst_2, Am_lst_2))
 
@@ -57,25 +56,16 @@ plt.plot(tfame2['Y'], tfame2['C_cost_lst_2'], label='Am_2')
 
 vals = Am_lst
 labels = list(range(1, 9))
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 
 fig, ax = plt.subplots()
-ax.pie(vals,
-       labels=labels,
-       autopct='%1.1f%%',
-       shadow=True,
-       explode=explode,
-       wedgeprops={
-           'linewidth': 1,
-           'edgecolor': 'k'
-       },
-       rotatelabels=True)
+ax.pie(vals, labels=labels, autopct='%1.1f%%', shadow=True, explode=explode, wedgeprops={'linewidth': 1, 'edgecolor': 'k'}, rotatelabels=True)
 ax.axis('equal')
 plt.show()
 
 vals = Am_lst_2
 labels = list(range(1, 9))
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 
 fig, ax = plt.subplots()
 ax.pie(vals,
@@ -91,33 +81,37 @@ ax.pie(vals,
 ax.axis('equal')
 plt.show()
 
+"""
+
 # Вариант 2
 from sympy import *
 import pandas as pd
 
+
+
 k, T, C, L = symbols('k T C L')
 # 1 Способ
-C_ost = 50000
+C_ost = 120000
 Am_lst = []
 C_ost_lst = []
-for i in range(9):
+for i in range(1, 11):
     Am = (C - L) / T
-    C_ost -= Am.subs({C: 50000, T: 9, L: 0})
-    Am_lst.append(round(Am.subs({C: 50000, T: 9, L: 0}), 2))
+    C_ost -= Am.subs({C: 120000, T: 9, L: 0})
+    Am_lst.append(round(Am.subs({C: 120000, T: 10, L: 0}), 2))
     C_ost_lst.append(round(C_ost, 2))
 print('Am_lst', Am_lst)
 print('C_ost_lst', C_ost_lst)
 
 #2 способ
 Aj = 0
-C_ost = 50000
+C_ost = 120000
 Am_lst_2 = []
 C_ost_lst_2 = []
 
-for i in range(9):
+for i in range(1, 11):
     Am = k * 1 / T * (C - Aj)
-    C_ost -= Am.subs({C: 50000, T: 9, k: 2})
-    Am_lst_2.append(round(Am.subs({C: 50000, T: 9, k: 2}), 2))
+    C_ost -= Am.subs({C: 120000, T: 9, k: 2})
+    Am_lst_2.append(round(Am.subs({C: 120000, T: 10, k: 2}), 2))
     Aj += Am
     C_ost_lst_2.append(round(C_ost, 2))
 
@@ -147,7 +141,7 @@ from matplotlib import pyplot as plt
 
 vals = Am_lst
 labels = list(range(1, 10))
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 
 fig, ax = plt.subplots()
 ax.pie(vals,
@@ -165,7 +159,7 @@ ax.axis('equal')
 
 vals = Am_lst_2
 labels = list(range(1, 10))
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 
 fig, ax = plt.subplots()
 ax.pie(vals,
